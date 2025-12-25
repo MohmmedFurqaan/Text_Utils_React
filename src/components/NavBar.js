@@ -1,7 +1,5 @@
 // Nav Bar Module for the Webpage
 
-// import prop-types
-import PropTypes from "prop-types";
 
 export default function NavBar({ nav_info}) {
   return (
@@ -54,9 +52,3 @@ export default function NavBar({ nav_info}) {
   );
 }
 
-
-// setting the prop-types
-NavBar.prototype = {
-  title: PropTypes.string,
-  about_text: PropTypes.string,
-};
