@@ -1,10 +1,11 @@
 // Nav Bar Module for the Webpage
 
 
-export default function NavBar({ nav_info}) {
+export default function NavBar({ nav_info }) {
+  
   return (
     // nav Bar componenet
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className={`navbar navbar-expand-lg navbar-${nav_info.mode} bg-${nav_info.mode}`}>
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
           {nav_info.title}
@@ -34,7 +35,7 @@ export default function NavBar({ nav_info}) {
             </li>
           </ul>
 
-          {/* Search Bar */}
+          {/* Search Bar
           <form className="d-flex" role="search">
             <input
               className="form-control me-2"
@@ -44,8 +45,12 @@ export default function NavBar({ nav_info}) {
             />
             <button className="btn btn-primary" type="submit">
               Search
-            </button>
-          </form>
+            </button> */}
+            <div className={`form-check form-switch text-${nav_info.mode ==='light'?'dark':'light'}`}>
+              <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onClick={nav_info.toggleMode}/>
+              <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Enable Dark Mode </label>
+            </div>
+          {/* </form> */}
         </div>
       </div>
     </nav>

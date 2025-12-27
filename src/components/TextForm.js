@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 
-export default function TextForm({ heading }) {
+export default function TextForm() {
 
     // declaring constants for the state 
     let [text, setText] = useState("");
@@ -58,9 +58,8 @@ export default function TextForm({ heading }) {
     return (        
         <>
             <div className='container'>
-                <h1>{heading}</h1>
+                <h1>Enter the text to Analyze</h1>
                 <div className="mb-3">
-                   {/* <label htmlFor="myBox" className="form-label">{heading}</label> */}
                     <textarea
                     className="form-control"
                     value={text}
@@ -74,7 +73,7 @@ export default function TextForm({ heading }) {
                 <button className="btn btn-primary mx-2" onClick={HandleUpclick}>Convert to Upper case</button>
                 <button className="btn btn-primary mx-2" onClick={HandleLowclick}>Convert to Lower case</button>
                 <button className="btn btn-primary mx-2" onClick={HandleClearClick}>Clear</button>
-                <button className="btn btn-primary mx-2" onClick={HandleEmailClick}>Extract Gmail ID</button>
+                <button className="btn btn-primary my-3" onClick={HandleEmailClick}>Extract Gmail ID</button>
                 
             </div>
 
