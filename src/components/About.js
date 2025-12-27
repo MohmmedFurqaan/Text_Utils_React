@@ -3,34 +3,31 @@ import React, { useState } from "react";
 export default function About() {
 
     const [myStyle, setMyStyle] = useState({
-        color : 'white',
-        backgroundColor : 'black'
+        color : 'black',
+        backgroundColor : 'white'
     })
-    const [BtnText, setBtnText] = useState("Enable Light Mode")
 
 
     // function to trigger for the button in the dark Mode 
     const EnableDarkMode = () =>{
-        if (myStyle.color == 'white'){
+        if (myStyle.backgroundColor === 'white'){
             
             setMyStyle(
                 
-                {
-                    color : "black",
-                    backgroundColor : "white"
-                }
-            )
-            setBtnText("Enable Dark Mode")
-            
-        } else{
-        
-            setMyStyle(
                 {
                     color : "white",
                     backgroundColor : "black"
                 }
             )
-            setBtnText("Enable Light Mode")
+            
+        } else{
+        
+            setMyStyle(
+                {
+                    color : "black",
+                    backgroundColor : "white"
+                }
+            )
         }
     }
 
@@ -142,9 +139,16 @@ export default function About() {
             </div>
           </div>
         </div>
-        <div className="container my-4">
+        {/* <div className="container my-4">
             <button type="button" className="btn btn-primary" onClick={EnableDarkMode}>{BtnText}</button>
+        </div> */}
+        <div className="container my-3">
+          <div className="form-check form-switch">
+          <input className="form-check-input" onClick={EnableDarkMode} type="checkbox" id="flexSwitchCheckDefault"/>
+          <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Enable Dark Mode</label>
         </div>
+        </div>
+        
         
       </div>
     </>
