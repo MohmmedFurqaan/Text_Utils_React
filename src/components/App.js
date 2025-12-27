@@ -1,7 +1,8 @@
 // Main App
 
+import About from "./About";
 import NavBar from "./NavBar";
-import TextForm from "./TextForm"
+
 
 export default function App() {
   return (
@@ -14,10 +15,12 @@ export default function App() {
       }}
       />
 
-      {/* text component */}
+      {/* text component
       <div className="container">
           <TextForm heading={"Enter the text to analyze"} />
-      </div>
+      </div> */}
+
+      <About/>
 
         
     </>
