@@ -4,19 +4,48 @@ import React, { useState } from 'react'
 export default function TextForm({ heading }) {
 
     // declaring constants for the state 
-    const [text, setText] = useState("");
+    let [text, setText] = useState("");
 
     // handle clicking Capitalize
     const HandleUpclick = ()=>{
-        let capital_text = text.toUpperCase();
-        setText(capital_text);
+        setText(text.toUpperCase());
     }
 
     // Handle low cicking --> lowercase
     const HandleLowclick = ()=>{
-        let capital_text = text.toLowerCase();
-        setText(capital_text);
+        setText(text.toLowerCase());
     }
+
+    // Handle low cicking --> lowercase
+    const HandleClearClick = ()=>{
+        setText('');
+    }
+
+    // extract the gmail
+
+    let HandleEmailClick = ()=>{
+
+        // regex expression for the email
+        const email_regex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
+        // var for the email_found if the Gmail ID found update the variable
+        let email_found = '';
+
+        // condition
+        if (text === ''){
+            alert("(ERROR) enter the text that contains email to find the email Id from the text !");
+            setText('');
+        }
+
+        if (text.match(email_regex)){
+            email_found = text.match(email_regex);
+            setText("Found Gmail Id is: " + email_found);
+        } else {
+            setText("No gmail id found !")
+        }
+
+
+    }
+
 
     // handle on change
     const HandleOnChange = (event)=> {
@@ -25,7 +54,6 @@ export default function TextForm({ heading }) {
     }
 
     
-
     
     return (        
         <>
@@ -45,6 +73,8 @@ export default function TextForm({ heading }) {
                 {/* Button for capitalize */}
                 <button className="btn btn-primary mx-2" onClick={HandleUpclick}>Convert to Upper case</button>
                 <button className="btn btn-primary mx-2" onClick={HandleLowclick}>Convert to Lower case</button>
+                <button className="btn btn-primary mx-2" onClick={HandleClearClick}>Clear</button>
+                <button className="btn btn-primary mx-2" onClick={HandleEmailClick}>Extract Gmail ID</button>
                 
             </div>
 
@@ -54,7 +84,7 @@ export default function TextForm({ heading }) {
                 <h2>Your Text Summary : </h2>
                 <p>Total Words : {text.split(" ").length}</p>
                 <p>Total characters : {text.length}</p>
-                <p>Time to read the words : {0.08 * text.split(" ").length}</p>
+                <p>Time to read the words : {0.08 * text.split(" ").length} minute</p>
 
                 {/* preiview */}
 
@@ -62,10 +92,6 @@ export default function TextForm({ heading }) {
                 <p>{text}</p>
             </div>
             
-
-            
-
-
         </>
     );
 }
