@@ -74,7 +74,7 @@ export default function TextForm({ heading }) {
                 <button className="btn btn-primary mx-2" onClick={HandleUpclick}>Convert to Upper case</button>
                 <button className="btn btn-primary mx-2" onClick={HandleLowclick}>Convert to Lower case</button>
                 <button className="btn btn-primary mx-2" onClick={HandleClearClick}>Clear</button>
-                <button className="btn btn-primary mx-2" onClick={HandleEmailClick}>Extract Gmail ID</button>
+                <button className="btn btn-primary mx-2" onClick={HandleEmailClick}>Extract Gmail</button>
                 
             </div>
 
