@@ -51,22 +51,37 @@ export default function TextForm() {
     return (        
         <>
             <div className='container'>
-                <h1>Enter the text to Analyze</h1>
+                <h1 className="fs-4 fs-md-2">Enter the text to Analyze</h1>
                 <div className="mb-3">
                     <textarea
                     className="form-control"
                     value={text}
                     onChange={HandleOnChange}
                     id="myBox"
-                    rows="8"
+                    rows="6"
+                    placeholder='Enter text here'
                     ></textarea> 
                 </div>
 
                 {/* Button for capitalize */}
-                <button className="btn btn-primary mx-2" onClick={HandleUpclick}>Convert to Upper case</button>
-                <button className="btn btn-primary mx-2" onClick={HandleLowclick}>Convert to Lower case</button>
-                <button className="btn btn-primary mx-2" onClick={HandleClearClick}>Clear</button>
-                <button className="btn btn-primary my-3" onClick={HandleEmailClick}>Extract Gmail ID</button>
+                <div className="d-grid gap-2 mt-3">
+                    <button className="btn btn-primary" onClick={HandleUpclick}>
+                        Convert to Uppercase
+                    </button>
+
+                    <button className="btn btn-primary" onClick={HandleLowclick}>
+                        Convert to Lowercase
+                    </button>
+
+                    <button className="btn btn-success" onClick={HandleEmailClick}>
+                        Extract Gmail ID
+                    </button>
+
+                    <button className="btn btn-outline-danger" onClick={HandleClearClick}>
+                        Clear
+                    </button>
+                </div>
+
                 
             </div>
 
