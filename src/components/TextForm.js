@@ -6,6 +6,9 @@ export default function TextForm() {
     // declaring constants for the state 
     let [text, setText] = useState("");
 
+    const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
+
+
     // handle clicking Capitalize
     const HandleUpclick = ()=>{
         setText(text.toUpperCase());
@@ -23,28 +26,18 @@ export default function TextForm() {
 
     // extract the gmail
 
-    let HandleEmailClick = ()=>{
+    const HandleEmailClick = () => {
+        const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
+        const found = text.match(emailRegex);
 
-        // regex expression for the email
-        const email_regex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
-        // var for the email_found if the Gmail ID found update the variable
-        let email_found = '';
-
-        // condition
-        if (text === ''){
-            alert("(ERROR) enter the text that contains email to find the email Id from the text !");
-            setText('');
+        if (!text.trim()) {
+            alert("Please enter text containing an email.");
+            return;
         }
 
-        if (text.match(email_regex)){
-            email_found = text.match(email_regex);
-            setText("Found Gmail Id is: " + email_found);
-        } else {
-            setText("No gmail id found !")
-        }
+        alert(found ? `Email found: ${found.join(", ")}` : "No email found");
+    };
 
-
-    }
 
 
     // handle on change
@@ -80,16 +73,16 @@ export default function TextForm() {
             {/* Text Summary */}
 
             <div className="container my-3">
-                <h2>Your Text Summary : </h2>
-                <p>Total Words : {text.split(" ").length}</p>
-                <p>Total characters : {text.length}</p>
-                <p>Time to read the words : {0.08 * text.split(" ").length} minute</p>
+                <h2>Your Text Summary</h2>
 
-                {/* preiview */}
+                <p><strong>Words:</strong> {wordCount}</p>
+                <p><strong>Characters:</strong> {text.length}</p>
+                <p><strong>Reading time:</strong> {(wordCount * 0.08)} minutes</p>
 
-                <h2>Preiview</h2>
-                <p>{text}</p>
+                <h2>Preview</h2>
+                <p>{text.length > 0 ? text : "Nothing to preview"}</p>
             </div>
+
             
         </>
     );

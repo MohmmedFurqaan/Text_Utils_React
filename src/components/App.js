@@ -1,26 +1,32 @@
 // Main App
 
+import '../style/app.css';
 import NavBar from "./NavBar";
 import TextForm from "./TextForm";
 import React, { useState } from "react";
 
 export default function App() {
   // state for the dark mode and the light mode
-  const [mode, SetMode] = useState("light");
+  const [mode, setMode] = useState("light");
 
   // handle the switching
+
+  // //     background-color: #00002f;
+  //   color: cadetblue;
+  //   font-family: monospace;
   
-  const toggleMode = ()=> {
-    if (mode === "light"){
-      SetMode("dark");
-      document.body.style.backgroundColor = 'grey'
-      document.body.style.color = 'white'
-    } else{
-      SetMode("light");
-      document.body.style.backgroundColor = 'white'
-      document.body.style.color = 'black'
-    }
+  const toggleMode = () => {
+  if (mode === "light") {
+    setMode("dark");
+    document.body.classList.add("dark-mode");
+    document.body.classList.remove("light-mode");
+  } else {
+    setMode("light");
+    document.body.classList.add("light-mode");
+    document.body.classList.remove("dark-mode");
   }
+};
+
 
   return (
     <>

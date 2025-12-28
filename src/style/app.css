@@ -1,0 +1,38 @@
+body {
+  transition: background-color 0.5s ease, color 0.3s ease;
+}
+
+
+.dark-mode {
+  background-color: #121212;
+  color: #e5e7eb;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+.light-mode {
+  background-color: #ffffff;
+  color: #111827;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Light mode */
+textarea.form-control {
+  background-color: #f9fafb;
+  color: #111827;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 15px;
+}
+
+/* Dark mode */
+.dark-mode textarea.form-control {
+  background-color: #1f2933;
+  color: #e5e7eb;
+  border: 1px solid #374151;
+}
+
+/* Focus state */
+textarea.form-control:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59,130,246,0.25);
+}
