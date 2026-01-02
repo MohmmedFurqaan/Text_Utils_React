@@ -1,6 +1,7 @@
 // Main App
 
 import '../style/app.css';
+import Alert from './Alert';
 import NavBar from "./NavBar";
 import TextForm from "./TextForm";
 import React, { useState } from "react";
@@ -9,27 +10,34 @@ export default function App() {
   // state for the dark mode and the light mode
   const [mode, setMode] = useState("light");
 
-  // handle the switching
+  const [alert, setAlert] = useState(null);
 
-  // //     background-color: #00002f;
-  //   color: cadetblue;
-  //   font-family: monospace;
+  const showAlert = (message, type)=>{
+    setAlert({
+      msg : message,
+      type : type
+    })
+  }
+
   
   const toggleMode = () => {
   if (mode === "light") {
     setMode("dark");
     document.body.classList.add("dark-mode");
     document.body.classList.remove("light-mode");
+    showAlert("Dark Mode Enabled ! toggle again to switch to light mode", "success");
   } else {
     setMode("light");
     document.body.classList.add("light-mode");
     document.body.classList.remove("dark-mode");
+    showAlert("light Mode Enabled ! toggle again to switch to dark mode", "success");
   }
 };
 
 
   return (
     <>
+      
       {/* Navbar component */}
       <NavBar
         nav_info={{
@@ -40,10 +48,16 @@ export default function App() {
         }}
       />
 
+      {/* alert */}
+      <Alert alert={alert}/>
+
+
       {/* text component */}
       <div className="container">
-        <TextForm/>
+        <TextForm showAlert = {showAlert}/>
       </div>
+
+      
     </>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 
-export default function TextForm() {
+export default function TextForm(props) {
 
     // declaring constants for the state 
     let [text, setText] = useState("");
@@ -11,12 +11,23 @@ export default function TextForm() {
 
     // handle clicking Capitalize
     const HandleUpclick = ()=>{
-        setText(text.toUpperCase());
+        if (text === ""){
+            props.showAlert("unable to convert ! enter something", "warning");
+        }else{
+            setText(text.toUpperCase());
+        props.showAlert("Converted to upper text", "success");
+        }
     }
+        
 
     // Handle low cicking --> lowercase
     const HandleLowclick = ()=>{
-        setText(text.toLowerCase());
+        if (text === ""){
+            props.showAlert("unable to convert ! enter something", "warning");
+        }else{
+            setText(text.toLowerCase());
+        props.showAlert("Converted to lower case", "success");
+        }
     }
 
     // Handle low cicking --> lowercase
@@ -31,7 +42,7 @@ export default function TextForm() {
         const found = text.match(emailRegex);
 
         if (!text.trim()) {
-            alert("Please enter text containing an email.");
+            props.showAlert("Please enter text containing an email.", "warning");
             return;
         }
 
@@ -42,7 +53,7 @@ export default function TextForm() {
 
     // handle on change
     const HandleOnChange = (event)=> {
-        // to allow entery in the text box
+        // to allow entry in the text box
         setText(event.target.value)
     }
 
@@ -100,5 +111,5 @@ export default function TextForm() {
 
             
         </>
-    );
+    )
 }
