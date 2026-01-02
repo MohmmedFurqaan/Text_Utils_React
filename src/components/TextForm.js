@@ -1,19 +1,33 @@
 import React, { useState } from 'react'
 
 
-export default function TextForm({ heading }) {
+export default function TextForm(props) {
 
     // declaring constants for the state 
     let [text, setText] = useState("");
 
+    const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
+
+
     // handle clicking Capitalize
     const HandleUpclick = ()=>{
-        setText(text.toUpperCase());
+        if (text === ""){
+            props.showAlert("unable to convert ! enter something", "warning");
+        }else{
+            setText(text.toUpperCase());
+        props.showAlert("Converted to upper text", "success");
+        }
     }
+        
 
     // Handle low cicking --> lowercase
     const HandleLowclick = ()=>{
-        setText(text.toLowerCase());
+        if (text === ""){
+            props.showAlert("unable to convert ! enter something", "warning");
+        }else{
+            setText(text.toLowerCase());
+        props.showAlert("Converted to lower case", "success");
+        }
     }
 
     // Handle low cicking --> lowercase
@@ -23,33 +37,23 @@ export default function TextForm({ heading }) {
 
     // extract the gmail
 
-    let HandleEmailClick = ()=>{
+    const HandleEmailClick = () => {
+        const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
+        const found = text.match(emailRegex);
 
-        // regex expression for the email
-        const email_regex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
-        // var for the email_found if the Gmail ID found update the variable
-        let email_found = '';
-
-        // condition
-        if (text === ''){
-            alert("(ERROR) enter the text that contains email to find the email Id from the text !");
-            setText('');
+        if (!text.trim()) {
+            props.showAlert("Please enter text containing an email.", "warning");
+            return;
         }
 
-        if (text.match(email_regex)){
-            email_found = text.match(email_regex);
-            setText("Found Gmail Id is: " + email_found);
-        } else {
-            setText("No gmail id found !")
-        }
+        alert(found ? `Email found: ${found.join(", ")}` : "No email found");
+    };
 
-
-    }
 
 
     // handle on change
     const HandleOnChange = (event)=> {
-        // to allow entery in the text box
+        // to allow entry in the text box
         setText(event.target.value)
     }
 
@@ -58,40 +62,54 @@ export default function TextForm({ heading }) {
     return (        
         <>
             <div className='container'>
-                <h1>{heading}</h1>
+                <h1 className="fs-4 fs-md-2">Enter the text to Analyze</h1>
                 <div className="mb-3">
-                   {/* <label htmlFor="myBox" className="form-label">{heading}</label> */}
                     <textarea
                     className="form-control"
                     value={text}
                     onChange={HandleOnChange}
                     id="myBox"
-                    rows="8"
+                    rows="6"
+                    placeholder='Enter text here'
                     ></textarea> 
                 </div>
 
                 {/* Button for capitalize */}
-                <button className="btn btn-primary mx-2" onClick={HandleUpclick}>Convert to Upper case</button>
-                <button className="btn btn-primary mx-2" onClick={HandleLowclick}>Convert to Lower case</button>
-                <button className="btn btn-primary mx-2" onClick={HandleClearClick}>Clear</button>
-                <button className="btn btn-primary mx-2" onClick={HandleEmailClick}>Extract Gmail</button>
+                <div className="d-grid gap-2 mt-3">
+                    <button className="btn btn-primary" onClick={HandleUpclick}>
+                        Convert to Uppercase
+                    </button>
+
+                    <button className="btn btn-primary" onClick={HandleLowclick}>
+                        Convert to Lowercase
+                    </button>
+
+                    <button className="btn btn-success" onClick={HandleEmailClick}>
+                        Extract Gmail ID
+                    </button>
+
+                    <button className="btn btn-outline-danger" onClick={HandleClearClick}>
+                        Clear
+                    </button>
+                </div>
+
                 
             </div>
 
             {/* Text Summary */}
 
             <div className="container my-3">
-                <h2>Your Text Summary : </h2>
-                <p>Total Words : {text.split(" ").length}</p>
-                <p>Total characters : {text.length}</p>
-                <p>Time to read the words : {0.08 * text.split(" ").length} minute</p>
+                <h2>Your Text Summary</h2>
 
-                {/* preiview */}
+                <p><strong>Words:</strong> {wordCount}</p>
+                <p><strong>Characters:</strong> {text.length}</p>
+                <p><strong>Reading time:</strong> {(wordCount * 0.08)} minutes</p>
 
-                <h2>Preiview</h2>
-                <p>{text}</p>
+                <h2>Preview</h2>
+                <p>{text.length > 0 ? text : "Nothing to preview"}</p>
             </div>
+
             
         </>
-    );
+    )
 }
