@@ -62,9 +62,9 @@ export default function App() {
 
           <Routes>
             {/* About Sections */}
-            <Route path='/about' element={<About></About>} />
+            <Route exact path='/about' element={<About></About>} />
 
-            <Route path='/' element={
+            <Route exact path='/' element={
               <div class="container">
                 < TextForm showAlert={showAlert}/>
               </div>
