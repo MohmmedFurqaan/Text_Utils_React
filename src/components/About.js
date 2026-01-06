@@ -3,7 +3,7 @@
 export default function About({ mode }) {
   const myStyle = {
     color: mode === "dark" ? "white" : "black",
-    backgroundColor: mode === "dark" ? "#212529" : "white",
+    backgroundColor: mode === "dark" ? "rgb(17 18 20)" : "white",
   };
 
   return (
