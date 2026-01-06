@@ -1,24 +1,9 @@
-import React, { useState } from "react";
 
-export default function About() {
-  const [myStyle, setMyStyle] = useState({
-    color: "black",
-    backgroundColor: "white",
-  });
 
-  // function to trigger for the button in the dark Mode
-  const EnableDarkMode = () => {
-    if (myStyle.backgroundColor === "white") {
-      setMyStyle({
-        color: "white",
-        backgroundColor: "black",
-      });
-    } else {
-      setMyStyle({
-        color: "black",
-        backgroundColor: "white",
-      });
-    }
+export default function About({ mode }) {
+  const myStyle = {
+    color: mode === "dark" ? "white" : "black",
+    backgroundColor: mode === "dark" ? "#212529" : "white",
   };
 
   return (
@@ -167,7 +152,7 @@ export default function About() {
                 <br />
                 TextUtils also provides powerful text analysis features that
                 help users understand their content better. Along with this, the
-                application offers a built-in dark mode for a comfortable
+                application offers a built-in dark myStyle for a comfortable
                 reading experience.
                 <br />
                 <br />
@@ -187,40 +172,21 @@ export default function About() {
                 helpful message, ensuring clarity and ease of use.
                 <br />
                 <br />
-                <strong>Dark Mode Support</strong>
+                <strong>Dark myStyle Support</strong>
                 <br />
                 To improve accessibility and reduce eye strain, TextUtils
-                includes a dark mode toggle. Users can switch between light and
+                includes a dark myStyle toggle. Users can switch between light and
                 dark themes instantly, making the app comfortable to use in any
                 lighting condition.
                 <br />
                 <br />
                 <strong>Conclusion</strong>
                 <br />
-                With text analysis, live preview, and dark mode support,
+                With text analysis, live preview, and dark myStyle support,
                 TextUtils becomes a complete and modern text utility application
                 designed for both productivity and user comfort.
               </div>
             </div>
-          </div>
-        </div>
-        {/* <div className="container my-4">
-            <button type="button" className="btn btn-primary" onClick={EnableDarkMode}>{BtnText}</button>
-        </div> */}
-        <div className="container my-3">
-          <div className="form-check form-switch">
-            <input
-              className="form-check-input"
-              onClick={EnableDarkMode}
-              type="checkbox"
-              id="flexSwitchCheckDefault"
-            />
-            <label
-              className="form-check-label"
-              htmlFor="flexSwitchCheckDefault"
-            >
-              Enable Dark Mode
-            </label>
           </div>
         </div>
       </div>

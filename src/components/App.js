@@ -62,7 +62,7 @@ export default function App() {
 
           <Routes>
             {/* About Sections */}
-            <Route exact path='/about' element={<About></About>} />
+            <Route exact path='/about' element={<About mode = {mode} />} />
 
             <Route exact path='/' element={
               <div className="container">
