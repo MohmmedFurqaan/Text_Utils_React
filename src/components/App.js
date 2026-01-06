@@ -65,7 +65,7 @@ export default function App() {
             <Route exact path='/about' element={<About></About>} />
 
             <Route exact path='/' element={
-              <div class="container">
+              <div className="container">
                 < TextForm showAlert={showAlert}/>
               </div>
               

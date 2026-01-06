@@ -6,7 +6,7 @@ export default function TextForm(props) {
     // declaring constants for the state 
     let [text, setText] = useState("");
 
-    const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
+    const wordCount = text.split(" ").filter((element) => {return element.length !== 0}).length;
 
 
     // handle clicking Capitalize
